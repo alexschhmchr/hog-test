@@ -80,12 +80,10 @@ public class DBScan {
         Core.findNonZero(threshImg, nonZero);
         int[] data = new int[(int) nonZero.total() * nonZero.channels()];
         nonZero.get(0, 0, data);
-        int len = data.length/2;
         ArrayList<Point> pointList = new ArrayList<>();
-        for (int i = 0; i < len; i++) {
-            int trueI = i*2;
-            int x = data[trueI];
-            int y = data[trueI + 1];
+        for (int i = 0; i < data.length;) {
+            int x = data[i++];
+            int y = data[i++];
             pointList.add(new Point(x, y));
         }
         return pointList;
